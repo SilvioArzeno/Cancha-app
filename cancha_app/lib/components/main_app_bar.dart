@@ -11,7 +11,7 @@ class MainAppbar extends StatelessWidget with PreferredSizeWidget {
           "Reservaciones",
           style: TextStyle(
               fontFamily: "Montserrat",
-              fontSize: 22,
+              fontSize: 24,
               fontWeight: FontWeight.bold,
               color: Colors.white),
         ),
