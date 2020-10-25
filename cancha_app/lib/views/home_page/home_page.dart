@@ -11,8 +11,9 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Container(),
+    return Scaffold(
+      appBar: AppBar(),
+      body: Container(),
     );
   }
 }
