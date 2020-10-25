@@ -1,3 +1,5 @@
+import 'package:cancha_app/components/form_app_bar.dart';
+import 'package:cancha_app/components/main_app_bar.dart';
 import 'package:flutter/material.dart';
 
 class ReservationForm extends StatefulWidget {
@@ -13,6 +15,7 @@ class _ReservationFormState extends State<ReservationForm> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: FormAppBar(),
       body: Container(),
     );
   }
