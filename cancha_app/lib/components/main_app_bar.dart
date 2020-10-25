@@ -18,7 +18,7 @@ class MainAppbar extends StatelessWidget with PreferredSizeWidget {
       ),
       backgroundColor: Color(0xFFFFA901),
       shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(bottomRight: Radius.circular(25))),
+          borderRadius: BorderRadius.only(bottomRight: Radius.circular(35))),
     );
   }
 
