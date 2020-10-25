@@ -11,14 +11,14 @@ class MainAppbar extends StatelessWidget with PreferredSizeWidget {
           "Reservaciones",
           style: TextStyle(
               fontFamily: "Montserrat",
-              fontSize: 22,
+              fontSize: 24,
               fontWeight: FontWeight.bold,
               color: Colors.white),
         ),
       ),
       backgroundColor: Color(0xFFFFA901),
       shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(bottomRight: Radius.circular(25))),
+          borderRadius: BorderRadius.only(bottomRight: Radius.circular(35))),
     );
   }
 
