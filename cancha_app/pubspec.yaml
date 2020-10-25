@@ -69,6 +69,6 @@ flutter:
   fonts:
     - family: Montserrat
       fonts:
-        - asset: resources/fonts/Montserrat-Bold.ttf
-        - asset: resources/fonts/Montserrat-ExtraBold.ttf
-        - asset: resources/fonts/montserrat-regular.ttf
+        - asset: lib/resources/fonts/Montserrat-Bold.ttf
+        - asset: lib/resources/fonts/Montserrat-ExtraBold.ttf
+        - asset: lib/resources/fonts/montserrat-regular.ttf
