@@ -1,5 +1,6 @@
 import 'package:cancha_app/components/custom_datepicker.dart';
 import 'package:cancha_app/components/custom_dropdown.dart';
+import 'package:cancha_app/components/custom_input.dart';
 import 'package:cancha_app/components/custom_timepicker.dart';
 import 'package:cancha_app/components/form_app_bar.dart';
 import 'package:flutter/material.dart';
@@ -49,7 +50,8 @@ class _ReservationFormState extends State<ReservationForm> {
                     fontFamily: "Montserrat",
                     fontSize: 24,
                     fontWeight: FontWeight.bold,
-                    color: Color(0xFF987C06)))
+                    color: Color(0xFF987C06))),
+            CustomInput(text: "Nombre del reservante")
           ],
         ),
       ),
