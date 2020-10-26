@@ -46,7 +46,7 @@ class _HomePageState extends State<HomePage> {
   _getReservations() async {
     if (_prefs.containsKey("reservations") != null &&
         _prefs.get("reservations") != null) {
-      _reservationList = jsonDecode(_prefs.get("reservation"));
+      _reservationList = jsonDecode(_prefs.get("reservations"));
     }
   }
 }

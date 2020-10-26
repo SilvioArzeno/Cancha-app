@@ -12,6 +12,7 @@
 // -8/3/2020 Silvio Arzeno: Widget created
 //
 
+import 'package:cancha_app/utils/rain_probability.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_cupertino_date_picker/flutter_cupertino_date_picker.dart';
 import 'package:flutter_svg/svg.dart';
@@ -120,7 +121,9 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
                     builder: (context) => Container(
                       height: currentScreen.height * 0.40,
                       child: DatePickerWidget(
-                        onConfirm: (value, indexes) {
+                        onConfirm: (value, indexes) async {
+                          _rainProb =
+                              await RainProbability.getChancesOfRain(value);
                           setState(() {
                             _formattedDate = DateFormat.yMMMd().format(value);
                           });
