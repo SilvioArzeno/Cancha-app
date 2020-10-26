@@ -28,6 +28,7 @@ dependencies:
   provider: ^4.3.2+2
   shared_preferences: any
   flutter_svg: ^0.19.1
+  flutter_cupertino_date_picker: ^1.0.26+2
 
 
 
