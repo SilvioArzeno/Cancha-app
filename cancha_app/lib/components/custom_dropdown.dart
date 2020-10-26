@@ -147,6 +147,8 @@ class _CustomDropdownState extends State<CustomDropdown> {
                             size: 32.0,
                           ),
                           onPressed: () {
+                            validationService
+                                .changeCanchaID(widget.options[selectedIndex]);
                             setState(() {
                               currentItem = widget.options[selectedIndex];
                             });

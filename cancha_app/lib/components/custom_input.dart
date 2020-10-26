@@ -83,7 +83,10 @@ class CustomInput extends StatelessWidget {
             ),
             height: inputHeight ?? currentScreen.height * 0.06,
             child: TextFormField(
-              onChanged: onChanged ?? (value) {},
+              onChanged: onChanged ??
+                  (value) {
+                    validationService.changeReservationName(value);
+                  },
               style: TextStyle(
                 fontFamily: "Montserrat",
                 fontSize: 22,
