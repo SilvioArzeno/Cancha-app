@@ -3,7 +3,9 @@ import 'package:cancha_app/components/custom_dropdown.dart';
 import 'package:cancha_app/components/custom_input.dart';
 import 'package:cancha_app/components/custom_timepicker.dart';
 import 'package:cancha_app/components/form_app_bar.dart';
+import 'package:cancha_app/providers/reservation_validation.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class ReservationForm extends StatefulWidget {
   ReservationForm({Key key}) : super(key: key);
@@ -17,6 +19,7 @@ class ReservationForm extends StatefulWidget {
 class _ReservationFormState extends State<ReservationForm> {
   @override
   Widget build(BuildContext context) {
+    final validationService = Provider.of<ReservationValidation>(context);
     print("Form Builded !!!!!");
     return Scaffold(
       backgroundColor: Colors.white,

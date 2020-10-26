@@ -12,9 +12,11 @@
 // -8/3/2020 Silvio Arzeno: Widget created
 //
 
+import 'package:cancha_app/providers/reservation_validation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:provider/provider.dart';
 
 class CustomInput extends StatelessWidget {
   CustomInput(
@@ -43,6 +45,8 @@ class CustomInput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size currentScreen = MediaQuery.of(context).size;
+
+    final validationService = Provider.of<ReservationValidation>(context);
     return Container(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

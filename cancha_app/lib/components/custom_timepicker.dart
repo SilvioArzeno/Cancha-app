@@ -12,10 +12,12 @@
 // -8/3/2020 Silvio Arzeno: Widget created
 //
 
+import 'package:cancha_app/providers/reservation_validation.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 
 class CustomTimePicker extends StatefulWidget {
   CustomTimePicker({
@@ -51,6 +53,7 @@ class _CustomTimePickerState extends State<CustomTimePicker> {
 
   @override
   Widget build(BuildContext context) {
+    final validationService = Provider.of<ReservationValidation>(context);
     print("Time picker build");
     Size currentScreen = MediaQuery.of(context).size;
 
