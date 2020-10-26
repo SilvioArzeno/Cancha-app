@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:json_annotation/json_annotation.dart';
 
+@JsonSerializable(nullable: false)
 class Reservation extends ChangeNotifier {
   final String reservationName;
   final DateTime reservationDate;
