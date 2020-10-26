@@ -5,27 +5,33 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ReservationValidation with ChangeNotifier {
-  String reservationName;
-  DateTime reservationDate;
-  DateTimeRange reservationTime;
-  String rainProbability;
-  String canchaID;
+  String _reservationName;
+  DateTime _reservationDate;
+  DateTimeRange _reservationTime;
+  String _rainProbability;
+  String _canchaID;
   List<Reservation> _currentReservationList;
   SharedPreferences _prefs;
 
   //Getters
 
-  String get getCanchaID => canchaID;
-  DateTime get getReservationDate => reservationDate;
-  DateTimeRange get reservationTimeRange => reservationTime;
-  String get rainProb => rainProbability;
-  String get getReservationName => reservationName;
+  String get getCanchaID => _canchaID;
+  DateTime get getReservationDate => _reservationDate;
+  DateTimeRange get reservationTimeRange => _reservationTime;
+  String get rainProb => _rainProbability;
+  String get getReservationName => _reservationName;
 
   //Setters
 
   void changeCanchaID(String value) {
-    canchaID = value;
+    _canchaID = value;
   }
 
-  void changeReservationDate(DateTime value) {}
+  void changeReservationDate(DateTime value) {
+    _reservationDate = value;
+  }
+
+  void changeReservationTimeRange(DateTime start, DateTime end) {
+    DateTimeRange(start: start, end: end);
+  }
 }

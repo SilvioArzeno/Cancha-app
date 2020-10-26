@@ -30,7 +30,7 @@ dependencies:
   flutter_svg: ^0.19.1
   flutter_cupertino_date_picker: ^1.0.26+2
   http: ^0.12.2
-
+  intl: ^0.16.1
 
 
 

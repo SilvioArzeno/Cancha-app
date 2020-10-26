@@ -152,10 +152,11 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
               SizedBox(
                 width: 15,
               ),
-              Text(_rainProb == null ? "---" : "$_rainProb",
+              Text(_rainProb == null || _rainProb < 0 ? "---" : "$_rainProb %",
                   style: TextStyle(
                       fontFamily: 'Montserrat',
-                      fontSize: 18,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
                       color: Color(0xFF006DF0)))
             ]),
           ),
