@@ -10,10 +10,13 @@ class FormAppBar extends StatelessWidget with PreferredSizeWidget {
       toolbarHeight: 150,
       automaticallyImplyLeading: false,
       title: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        Icon(
-          Icons.arrow_back,
+        IconButton(
+          icon: Icon(Icons.arrow_back),
           color: Colors.white,
-          size: 30,
+          iconSize: 30,
+          onPressed: () {
+            Navigator.pop(context);
+          },
         ),
         Row(mainAxisSize: MainAxisSize.min, children: [
           SvgPicture.asset(

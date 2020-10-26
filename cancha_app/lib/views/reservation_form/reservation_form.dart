@@ -59,6 +59,26 @@ class _ReservationFormState extends State<ReservationForm> {
                     fontSize: 24,
                     fontWeight: FontWeight.bold,
                     color: Color(0xFF987C06)),
+              ),
+              RaisedButton(
+                color: Color(0xFFFFA901),
+                child: Container(
+                  height: MediaQuery.of(context).size.height * 0.06,
+                  width: MediaQuery.of(context).size.width * 0.5,
+                  child: Center(
+                    child: Text(
+                      "Confirmar",
+                      style: TextStyle(
+                          fontFamily: "Montserrat",
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white),
+                    ),
+                  ),
+                ),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(25))),
+                onPressed: () {},
               )
             ],
           ),
