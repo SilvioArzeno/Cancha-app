@@ -6,6 +6,7 @@ import 'package:cancha_app/models/reservation.dart';
 import 'package:cancha_app/providers/reservation_validation.dart';
 import 'package:cancha_app/views/reservation_form/reservation_form.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -35,15 +36,12 @@ class _HomePageState extends State<HomePage> {
       appBar: MainAppbar(),
       body: _reservationList.isEmpty
           ? EmptyReservationList()
-          : Center(child: Text("RESERVACIONES ITEMS")),
-      floatingActionButton: ChangeNotifierProvider(
-        create: (context) => ReservationValidation(),
-        child: FloatingActionButton(
-          backgroundColor: Color(0xFFFFA901),
-          child: Icon(Icons.add, color: Colors.white),
-          onPressed: () =>
-              Navigator.pushNamed(context, ReservationForm.routeName),
-        ),
+          : Center(child: Text("Hay Algo")),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Color(0xFFFFA901),
+        child: Icon(Icons.add, color: Colors.white),
+        onPressed: () =>
+            Navigator.pushNamed(context, ReservationForm.routeName),
       ),
     );
   }
@@ -51,7 +49,7 @@ class _HomePageState extends State<HomePage> {
   _getReservations() async {
     if (_prefs.containsKey("reservations") != null &&
         _prefs.get("reservations") != null) {
-      _reservationList = jsonDecode(_prefs.get("reservations"));
+      _reservationList = jsonDecode(_prefs.get("reservation"));
     }
   }
 }

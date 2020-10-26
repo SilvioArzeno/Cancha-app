@@ -19,73 +19,103 @@ class ReservationForm extends StatefulWidget {
 class _ReservationFormState extends State<ReservationForm> {
   @override
   Widget build(BuildContext context) {
-    final validationService = Provider.of<ReservationValidation>(context);
     print("Form Builded !!!!!");
-    return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: FormAppBar(),
-      body: Padding(
-        padding: const EdgeInsets.all(15),
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              CustomDropdown(
-                  text: "Cancha",
-                  options: ['Cancha A', 'Cancha B', 'Cancha C'],
-                  textIcon: 'ball.svg',
-                  textDecoration: TextStyle(
-                      fontFamily: "Montserrat",
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                      color: Color(0xFF987C06))),
-              CustomDatePicker(
-                  text: "Fecha",
-                  icon: "date.svg",
-                  textDecoration: TextStyle(
-                      fontFamily: "Montserrat",
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                      color: Color(0xFF987C06))),
-              CustomTimePicker(
-                  text: "Hora",
-                  icon: "clock.svg",
-                  textDecoration: TextStyle(
-                      fontFamily: "Montserrat",
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                      color: Color(0xFF987C06))),
-              CustomInput(
-                text: "Nombre del reservante",
-                icon: "person.svg",
-                textDecoration: TextStyle(
-                    fontFamily: "Montserrat",
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
-                    color: Color(0xFF987C06)),
-              ),
-              RaisedButton(
-                color: Color(0xFFFFA901),
-                child: Container(
-                  height: MediaQuery.of(context).size.height * 0.06,
-                  width: MediaQuery.of(context).size.width * 0.5,
-                  child: Center(
-                    child: Text(
-                      "Confirmar",
-                      style: TextStyle(
+    return ChangeNotifierProvider(
+      create: (context) => ReservationValidation(),
+      child: Consumer<ReservationValidation>(
+        builder: (context, provider, child) {
+          Provider.of<ReservationValidation>(context).setPreferences();
+          return Scaffold(
+            backgroundColor: Colors.white,
+            appBar: FormAppBar(),
+            body: Padding(
+              padding: const EdgeInsets.all(25),
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    CustomDropdown(
+                        text: "Cancha",
+                        options: ['Cancha A', 'Cancha B', 'Cancha C'],
+                        textIcon: 'ball.svg',
+                        textDecoration: TextStyle(
+                            fontFamily: "Montserrat",
+                            fontSize: 24,
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xFF987C06))),
+                    SizedBox(
+                      height: 15,
+                    ),
+                    CustomDatePicker(
+                        text: "Fecha",
+                        icon: "date.svg",
+                        textDecoration: TextStyle(
+                            fontFamily: "Montserrat",
+                            fontSize: 24,
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xFF987C06))),
+                    SizedBox(
+                      height: 15,
+                    ),
+                    CustomTimePicker(
+                        text: "Hora",
+                        icon: "clock.svg",
+                        textDecoration: TextStyle(
+                            fontFamily: "Montserrat",
+                            fontSize: 24,
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xFF987C06))),
+                    SizedBox(
+                      height: 15,
+                    ),
+                    CustomInput(
+                      text: "Nombre del reservante",
+                      icon: "person.svg",
+                      textDecoration: TextStyle(
                           fontFamily: "Montserrat",
                           fontSize: 24,
                           fontWeight: FontWeight.bold,
-                          color: Colors.white),
+                          color: Color(0xFF987C06)),
                     ),
-                  ),
+                    SizedBox(
+                      height: 25,
+                    ),
+                    RaisedButton(
+                      color: Color(0xFFFFA901),
+                      child: Container(
+                        height: MediaQuery.of(context).size.height * 0.06,
+                        width: MediaQuery.of(context).size.width * 0.5,
+                        child: Center(
+                          child: Text(
+                            "Confirmar",
+                            style: TextStyle(
+                                fontFamily: "Montserrat",
+                                fontSize: 24,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white),
+                          ),
+                        ),
+                      ),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(25))),
+                      onPressed: () async {
+                        String error = await Provider.of<ReservationValidation>(
+                                context,
+                                listen: false)
+                            .submitForm();
+                        if (error == null) {
+                          Navigator.pop(context);
+                        } else
+                          AlertDialog(
+                            content: Center(child: Text("$error")),
+                          );
+                      },
+                    )
+                  ],
                 ),
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(25))),
-                onPressed: () {},
-              )
-            ],
-          ),
-        ),
+              ),
+            ),
+          );
+        },
       ),
     );
   }

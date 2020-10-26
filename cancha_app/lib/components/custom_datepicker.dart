@@ -128,6 +128,8 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
                         onConfirm: (value, indexes) async {
                           _rainProb =
                               await RainProbability.getChancesOfRain(value);
+                          validationService.changeRainProb(_rainProb);
+                          validationService.changeReservationDate(value);
                           setState(() {
                             _formattedDate = DateFormat.yMMMd().format(value);
                           });

@@ -31,7 +31,7 @@ dependencies:
   flutter_cupertino_date_picker: ^1.0.26+2
   http: ^0.12.2
   intl: ^0.16.1
-
+  json_serializable: ^3.5.0
 
 
 dev_dependencies:

@@ -214,6 +214,10 @@ class _CustomTimePickerState extends State<CustomTimePicker> {
                                                     DateTime.now().minute)))
                                             .toIso8601String();
                                       }
+                                      validationService.changeReservationTimeRange(
+                                          DateTime.tryParse(
+                                              "2020-10-26T$_startTime:00.000"),
+                                          DateTime.tryParse(_endTime));
                                       setState(() {
                                         _endTime = DateFormat.Hm().format(
                                             DateTime.tryParse(this._endTime));

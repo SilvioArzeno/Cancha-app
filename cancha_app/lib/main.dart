@@ -1,3 +1,4 @@
+import 'package:cancha_app/providers/reservation_validation.dart';
 import 'package:cancha_app/routes/routes.dart';
 import 'package:cancha_app/views/home_page/home_page.dart';
 import 'package:flutter/material.dart';
@@ -23,9 +24,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Cancha App',
       routes: routes,
-      home: ChangeNotifierProvider(
-          create: (context) => Reservation(),
-          child: HomePage(preferences: preferences)),
+      home: HomePage(preferences: preferences),
     );
   }
 }
