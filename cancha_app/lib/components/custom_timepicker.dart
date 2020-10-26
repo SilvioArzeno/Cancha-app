@@ -184,7 +184,7 @@ class _CustomTimePickerState extends State<CustomTimePicker> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text("$_endTime",
+                        Text(_endTime == null ? "" : "$_endTime",
                             style: const TextStyle(
                               fontFamily: "Montserrat",
                               fontSize: 22,
@@ -193,57 +193,51 @@ class _CustomTimePickerState extends State<CustomTimePicker> {
                       ],
                     ),
                   ),
-                  onTap: _startTime == null
-                      ? () {}
-                      : () => showModalBottomSheet(
-                            context: context,
-                            builder: (context) => Container(
-                                height: currentScreen.height * 0.40,
-                                child: Scaffold(
-                                  appBar: AppBar(
-                                      automaticallyImplyLeading: false,
-                                      backgroundColor: Color(0xFF987C06),
-                                      title: Text("${widget.text}"),
-                                      actions: [
-                                        IconButton(
-                                            icon: Icon(Icons.send),
-                                            onPressed: () {
-                                              if (_endTime == null) {
-                                                _endTime = DateTime.now()
-                                                    .add(Duration(
-                                                        hours: 1,
-                                                        minutes: (60 -
-                                                            DateTime.now()
-                                                                .minute)))
-                                                    .toIso8601String();
-                                              }
-                                              setState(() {
-                                                _endTime = DateFormat.Hm()
-                                                    .format(DateTime.tryParse(
-                                                        this._endTime));
-                                              });
-                                              Navigator.pop(context);
-                                            })
-                                      ]),
-                                  body: CupertinoDatePicker(
-                                    use24hFormat: true,
-                                    minuteInterval: 30,
-                                    mode: CupertinoDatePickerMode.time,
-                                    initialDateTime: DateTime.now().add(
-                                        Duration(
-                                            hours: 1,
-                                            minutes:
-                                                (60 - DateTime.now().minute))),
-                                    onDateTimeChanged: (value) {
-                                      validationService
-                                          .changeReservationTimeRange(
-                                              DateTime.tryParse(_startTime),
-                                              value);
-                                      _endTime = value.toIso8601String();
-                                    },
-                                  ),
-                                )),
+                  onTap: () => showModalBottomSheet(
+                    context: context,
+                    builder: (context) => Container(
+                        height: currentScreen.height * 0.40,
+                        child: Scaffold(
+                          appBar: AppBar(
+                              automaticallyImplyLeading: false,
+                              backgroundColor: Color(0xFF987C06),
+                              title: Text("${widget.text}"),
+                              actions: [
+                                IconButton(
+                                    icon: Icon(Icons.send),
+                                    onPressed: () {
+                                      if (_endTime == null) {
+                                        _endTime = DateTime.now()
+                                            .add(Duration(
+                                                hours: 1,
+                                                minutes: (60 -
+                                                    DateTime.now().minute)))
+                                            .toIso8601String();
+                                      }
+                                      validationService.changeReservationTimeRange(
+                                          DateTime.tryParse(
+                                              "2020-10-26T$_startTime:00.000"),
+                                          DateTime.tryParse(_endTime));
+                                      setState(() {
+                                        _endTime = DateFormat.Hm().format(
+                                            DateTime.tryParse(this._endTime));
+                                      });
+                                      Navigator.pop(context);
+                                    })
+                              ]),
+                          body: CupertinoDatePicker(
+                            use24hFormat: true,
+                            minuteInterval: 30,
+                            mode: CupertinoDatePickerMode.time,
+                            initialDateTime: DateTime.now().add(Duration(
+                                hours: 1,
+                                minutes: (60 - DateTime.now().minute))),
+                            onDateTimeChanged: (value) {
+                              _endTime = value.toIso8601String();
+                            },
                           ),
+                        )),
+                  ),
                 ),
               ),
             ]),

@@ -33,20 +33,17 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: MainAppbar(),
-        body: _reservationList.isEmpty
-            ? EmptyReservationList()
-            : Center(child: Text("Hay Algo")),
-        floatingActionButton: ChangeNotifierProvider(
-            create: (context) => ReservationValidation(),
-            child: Consumer<ReservationValidation>(
-              builder: (context, provider, child) => FloatingActionButton(
-                backgroundColor: Color(0xFFFFA901),
-                child: Icon(Icons.add, color: Colors.white),
-                onPressed: () =>
-                    Navigator.pushNamed(context, ReservationForm.routeName),
-              ),
-            )));
+      appBar: MainAppbar(),
+      body: _reservationList.isEmpty
+          ? EmptyReservationList()
+          : Center(child: Text("Hay Algo")),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Color(0xFFFFA901),
+        child: Icon(Icons.add, color: Colors.white),
+        onPressed: () =>
+            Navigator.pushNamed(context, ReservationForm.routeName),
+      ),
+    );
   }
 
   _getReservations() async {
