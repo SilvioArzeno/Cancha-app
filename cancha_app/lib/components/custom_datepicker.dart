@@ -126,7 +126,7 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
                           });
                         },
                         dateFormat: 'dd/MM/yyyy',
-                        minDateTime: DateTime.now(),
+                        minDateTime: DateTime.now().add(Duration(days: 1)),
                         pickerTheme: DateTimePickerTheme(
                           confirmTextStyle: TextStyle(color: Color(0xFF987C06)),
                           itemTextStyle: TextStyle(

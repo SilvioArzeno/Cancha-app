@@ -1,5 +1,6 @@
 import 'package:cancha_app/components/custom_datepicker.dart';
 import 'package:cancha_app/components/custom_dropdown.dart';
+import 'package:cancha_app/components/custom_timepicker.dart';
 import 'package:cancha_app/components/form_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -14,8 +15,6 @@ class ReservationForm extends StatefulWidget {
 }
 
 class _ReservationFormState extends State<ReservationForm> {
-  int _rainProb;
-
   @override
   Widget build(BuildContext context) {
     print("Form Builded !!!!!");
@@ -43,11 +42,14 @@ class _ReservationFormState extends State<ReservationForm> {
                     fontSize: 24,
                     fontWeight: FontWeight.bold,
                     color: Color(0xFF987C06))),
-            Text(_rainProb == null ? "-" : "$_rainProb",
-                style: TextStyle(
-                    fontFamily: 'Montserrat',
-                    fontSize: 18,
-                    color: Color(0xFF006DF0)))
+            CustomTimePicker(
+                text: "Hora",
+                icon: "clock.svg",
+                textDecoration: TextStyle(
+                    fontFamily: "Montserrat",
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                    color: Color(0xFF987C06)))
           ],
         ),
       ),
