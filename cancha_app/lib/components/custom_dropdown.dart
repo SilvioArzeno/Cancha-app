@@ -1,6 +1,8 @@
+import 'package:cancha_app/providers/reservation_validation.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:provider/provider.dart';
 
 class CustomDropdown extends StatefulWidget {
   final String textIcon;
@@ -48,6 +50,8 @@ class _CustomDropdownState extends State<CustomDropdown> {
 
   @override
   Widget build(BuildContext context) {
+    final validationService = Provider.of<ReservationValidation>(context);
+
     print("Selector Rebuild");
     Size screenSize = MediaQuery.of(context).size;
     List<Widget> children = new List<Widget>();
