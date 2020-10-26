@@ -34,7 +34,7 @@ class CustomInput extends StatelessWidget {
   final String text;
   final bool isPassword;
   final Color textColor;
-  final TextDecoration textDecoration;
+  final TextStyle textDecoration;
   final TextInputType keyboardType;
   final double inputHeight;
   final double inputWidth;
@@ -74,6 +74,8 @@ class CustomInput extends StatelessWidget {
                   color: Color(0x40000000),
                 )
               ],
+              color: Color(0xFFD7D2D2),
+              borderRadius: BorderRadius.circular(15),
             ),
             height: inputHeight ?? currentScreen.height * 0.06,
             child: TextFormField(

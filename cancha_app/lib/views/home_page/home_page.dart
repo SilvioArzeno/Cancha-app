@@ -5,7 +5,6 @@ import 'package:cancha_app/components/main_app_bar.dart';
 import 'package:cancha_app/models/reservation.dart';
 import 'package:cancha_app/views/reservation_form/reservation_form.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class HomePage extends StatefulWidget {

@@ -41,7 +41,6 @@ class _CustomDropdownState extends State<CustomDropdown> {
   int selectedIndex;
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     currentItem = widget.selectedItem;
     selectedIndex = 0;
