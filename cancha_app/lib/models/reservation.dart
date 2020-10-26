@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class Reservation {
+class Reservation extends ChangeNotifier {
   final String reservationName;
   final DateTime reservationDate;
   final DateTimeRange reservationTime;
