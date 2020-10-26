@@ -12,11 +12,13 @@
 // -8/3/2020 Silvio Arzeno: Widget created
 //
 
+import 'package:cancha_app/providers/reservation_validation.dart';
 import 'package:cancha_app/utils/rain_probability.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_cupertino_date_picker/flutter_cupertino_date_picker.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 
 class CustomDatePicker extends StatefulWidget {
   CustomDatePicker({
@@ -52,6 +54,8 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
   int _rainProb;
   @override
   Widget build(BuildContext context) {
+    final validationService = Provider.of<ReservationValidation>(context);
+
     print("Date picker build");
     Size currentScreen = MediaQuery.of(context).size;
 

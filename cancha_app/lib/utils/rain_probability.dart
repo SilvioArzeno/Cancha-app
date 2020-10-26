@@ -6,8 +6,11 @@ import 'package:intl/intl.dart';
 class RainProbability {
   static Future<int> getChancesOfRain(DateTime value) async {
     String formattedValue = DateFormat("yyyy-MM-dd").format(value);
+    String city = "Santo Domingo";
+    String days = "10";
+    String apiKey = "cb807aec08094dc3b44131719202610";
     String apiCall =
-        "https://api.weatherapi.com/v1/forecast.json?key=cb807aec08094dc3b44131719202610&q=Santo Domingo&days=10";
+        "https://api.weatherapi.com/v1/forecast.json?key=$apiKey&q=$city&days=$days";
     var response = await http.get(apiCall);
     var objects = jsonDecode(response.body);
 

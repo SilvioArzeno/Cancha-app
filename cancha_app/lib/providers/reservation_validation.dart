@@ -32,6 +32,55 @@ class ReservationValidation with ChangeNotifier {
   }
 
   void changeReservationTimeRange(DateTime start, DateTime end) {
-    DateTimeRange(start: start, end: end);
+    _reservationTime = DateTimeRange(start: start, end: end);
+  }
+
+  void changeRainProb(int rainProb) {
+    _rainProbability = rainProb.toString();
+  }
+
+  void changeReservationName(String value) {
+    _reservationName = value;
+  }
+
+  String submitForm() {
+    String errorMsg;
+
+    if (_canchaID != null &&
+        _reservationDate != null &&
+        _reservationTime != null &&
+        _reservationName != null &&
+        _rainProbability != null) {
+      int counterA = 0;
+      int counterB = 0;
+      int counterC = 0;
+      _currentReservationList.forEach((element) {
+        switch (element.canchaID) {
+          case "Cancha A":
+            counterA++;
+            break;
+          case "Cancha B":
+            counterB++;
+            break;
+          case "Cancha C":
+            counterC++;
+            break;
+        }
+      });
+      Reservation newReservation = Reservation(
+          canchaID: _canchaID,
+          reservationDate: _reservationDate,
+          reservationTime: _reservationTime,
+          reservationName: _reservationName,
+          rainProbability: _rainProbability);
+
+      if ((_canchaID == "Cancha A" && counterA >= 3) ||
+          (_canchaID == "Cancha B" && counterB >= 3) ||
+          (_canchaID == "Cancha C" && counterC >= 3)) {
+        errorMsg = "Esta cancha ya tiene tres reservas";
+      }
+    }
+
+    return errorMsg;
   }
 }
