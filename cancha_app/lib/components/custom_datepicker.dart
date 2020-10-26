@@ -47,6 +47,8 @@ class CustomDatePicker extends StatefulWidget {
 
 class _CustomDatePickerState extends State<CustomDatePicker> {
   String _formattedDate;
+
+  int _rainProb;
   @override
   Widget build(BuildContext context) {
     print("Date picker build");
@@ -83,70 +85,76 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
           ),
           Container(
             alignment: Alignment.centerLeft,
-            decoration: BoxDecoration(
-              boxShadow: [
-                BoxShadow(
-                  blurRadius: 5,
-                  offset: Offset(0, 10),
-                  color: Color(
-                    0x40000000,
-                  ),
-                )
-              ],
-            ),
             height: widget.inputHeight ?? currentScreen.height * 0.06,
-            child: GestureDetector(
-              child: Container(
-                height: currentScreen.height * 0.35,
-                decoration: BoxDecoration(
-                  boxShadow: [
-                    BoxShadow(
-                      blurRadius: 5,
-                      offset: Offset(0, 10),
-                      color: Color(0x40000000),
-                    )
-                  ],
-                  color: Color(0xFFD7D2D2),
-                  borderRadius: BorderRadius.circular(15),
-                ),
-                padding: EdgeInsets.symmetric(horizontal: 15),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(_formattedDate == null ? "" : "$_formattedDate",
-                        style: const TextStyle(
-                          fontFamily: "Montserrat",
-                          fontSize: 22,
-                          color: Colors.black,
-                        )),
-                  ],
-                ),
-              ),
-              onTap: () => showModalBottomSheet(
-                context: context,
-                builder: (context) => Container(
-                  height: currentScreen.height * 0.40,
-                  child: DatePickerWidget(
-                    onConfirm: (value, indexes) {
-                      setState(() {
-                        _formattedDate = DateFormat.yMMMd().format(value);
-                      });
-                    },
-                    dateFormat: 'dd/MM/yyyy',
-                    minDateTime: DateTime.now(),
-                    pickerTheme: DateTimePickerTheme(
-                      confirmTextStyle: TextStyle(color: Color(0xFF987C06)),
-                      itemTextStyle: TextStyle(
-                        fontFamily: "Montserrat",
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        color: Color(0xFF987C06),
+            child: Row(children: [
+              Expanded(
+                child: GestureDetector(
+                  child: Container(
+                    height: currentScreen.height * 0.35,
+                    decoration: BoxDecoration(
+                      boxShadow: [
+                        BoxShadow(
+                          blurRadius: 5,
+                          offset: Offset(0, 10),
+                          color: Color(0x40000000),
+                        )
+                      ],
+                      color: Color(0xFFD7D2D2),
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                    padding: EdgeInsets.symmetric(horizontal: 15),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(_formattedDate == null ? "" : "$_formattedDate",
+                            style: const TextStyle(
+                              fontFamily: "Montserrat",
+                              fontSize: 22,
+                              color: Colors.black,
+                            )),
+                      ],
+                    ),
+                  ),
+                  onTap: () => showModalBottomSheet(
+                    context: context,
+                    builder: (context) => Container(
+                      height: currentScreen.height * 0.40,
+                      child: DatePickerWidget(
+                        onConfirm: (value, indexes) {
+                          setState(() {
+                            _formattedDate = DateFormat.yMMMd().format(value);
+                          });
+                        },
+                        dateFormat: 'dd/MM/yyyy',
+                        minDateTime: DateTime.now(),
+                        pickerTheme: DateTimePickerTheme(
+                          confirmTextStyle: TextStyle(color: Color(0xFF987C06)),
+                          itemTextStyle: TextStyle(
+                            fontFamily: "Montserrat",
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xFF987C06),
+                          ),
+                        ),
                       ),
                     ),
                   ),
                 ),
               ),
-            ),
+              SizedBox(
+                width: 15,
+              ),
+              SvgPicture.asset("lib/resources/images/icons/rain.svg",
+                  height: 35, width: 35, color: Color(0xFF006DF0)),
+              SizedBox(
+                width: 15,
+              ),
+              Text(_rainProb == null ? "---" : "$_rainProb",
+                  style: TextStyle(
+                      fontFamily: 'Montserrat',
+                      fontSize: 18,
+                      color: Color(0xFF006DF0)))
+            ]),
           ),
         ],
       ),
