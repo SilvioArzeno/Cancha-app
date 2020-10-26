@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-class CustomDropdown extends StatelessWidget {
+class CustomDropdown extends StatefulWidget {
   final String textIcon;
   final Icon buttonIcon;
   final double height;
@@ -11,7 +11,7 @@ class CustomDropdown extends StatelessWidget {
   final List<String> options;
   final Color textColor;
   final Function onChanged;
-  final TextDecoration textDecoration;
+  final TextStyle textDecoration;
   final TextDecoration inputTextDecoration;
   final double textSize;
   final String selectedItem;
@@ -33,16 +33,32 @@ class CustomDropdown extends StatelessWidget {
   }) : super(key: key);
 
   @override
+  _CustomDropdownState createState() => _CustomDropdownState();
+}
+
+class _CustomDropdownState extends State<CustomDropdown> {
+  String currentItem;
+  int selectedIndex;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    currentItem = widget.selectedItem;
+    selectedIndex = 0;
+  }
+
+  @override
   Widget build(BuildContext context) {
+    print("Selector Rebuild");
     Size screenSize = MediaQuery.of(context).size;
     List<Widget> children = new List<Widget>();
-    options.forEach((element) {
+    widget.options.forEach((element) {
       children.add(Text(element,
           style: TextStyle(
             fontFamily: "Montserrat",
             fontSize: 32,
             fontWeight: FontWeight.bold,
-            color: Color(0xFF0B768C),
+            color: Color(0xFF987C06),
           )));
     });
     return Container(
@@ -51,16 +67,23 @@ class CustomDropdown extends StatelessWidget {
         children: [
           Row(
             children: <Widget>[
-              if (textIcon != null)
-                SvgPicture.asset("lib/resources/images/icons/$textIcon"),
+              if (widget.textIcon != null)
+                SvgPicture.asset(
+                    "lib/resources/images/icons/${widget.textIcon}",
+                    height: 35,
+                    width: 35,
+                    color: Color(0xFF987C06)),
+              SizedBox(
+                width: 15,
+              ),
               Text(
-                "$text",
-                style: (textDecoration ??
+                "${widget.text}",
+                style: (widget.textDecoration ??
                     TextStyle(
                         fontFamily: "Montserrat",
-                        fontSize: textSize ?? 14,
+                        fontSize: widget.textSize ?? 14,
                         fontWeight: FontWeight.bold,
-                        color: textColor ?? Colors.white)),
+                        color: widget.textColor ?? Colors.white)),
               ),
             ],
           ),
@@ -69,9 +92,31 @@ class CustomDropdown extends StatelessWidget {
           ),
           GestureDetector(
             child: Container(
-              width: 100,
-              height: 100,
-              color: Colors.red,
+              height: screenSize.height * 0.05,
+              decoration: BoxDecoration(
+                boxShadow: [
+                  BoxShadow(
+                    blurRadius: 5,
+                    offset: Offset(0, 10),
+                    color: Color(0x40000000),
+                  )
+                ],
+                color: Color(0xFFD7D2D2),
+                borderRadius: BorderRadius.circular(15),
+              ),
+              padding: EdgeInsets.symmetric(horizontal: 15),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(currentItem == null ? "" : "$currentItem",
+                      style: const TextStyle(
+                        fontFamily: "Montserrat",
+                        fontSize: 22,
+                        color: Colors.black,
+                      )),
+                  Icon(Icons.arrow_drop_down)
+                ],
+              ),
             ),
             onTap: () => {
               showModalBottomSheet(
@@ -83,22 +128,25 @@ class CustomDropdown extends StatelessWidget {
                       automaticallyImplyLeading: false,
                       elevation: 0,
                       title: Text(
-                        "$text",
+                        "${widget.text}",
                         style: TextStyle(
                           fontFamily: "Montserrat",
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
-                          color: Color(0xFF0B768C),
+                          color: Color(0xFF987C06),
                         ),
                       ),
                       actions: [
                         IconButton(
                           icon: Icon(
                             Icons.check,
-                            color: Color(0xFF0B768C),
+                            color: Color(0xFF987C06),
                             size: 32.0,
                           ),
                           onPressed: () {
+                            setState(() {
+                              currentItem = widget.options[selectedIndex];
+                            });
                             Navigator.pop(context);
                           },
                         )
@@ -106,10 +154,12 @@ class CustomDropdown extends StatelessWidget {
                     ),
                     body: CupertinoPicker(
                       scrollController: FixedExtentScrollController(
-                        initialItem: options.indexOf("$selectedItem"),
+                        initialItem: widget.options.indexOf("$currentItem"),
                       ),
                       itemExtent: 60,
-                      onSelectedItemChanged: onChanged ?? (int value) {},
+                      onSelectedItemChanged: (value) {
+                        selectedIndex = value;
+                      },
                       children: children,
                     ),
                   ),
